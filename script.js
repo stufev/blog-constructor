@@ -165,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
             category: cat,
             name: document.getElementById('name').value,
             author: document.getElementById('author').value || null,
+            tag: document.getElementById('tag').value,
             date: dateText.value,
             attachments: {
                 bigImg: document.getElementById('bigImg').value,
