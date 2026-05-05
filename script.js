@@ -2,7 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const categories = [
         {id: 0, code: 0, name: "Коллекции"},
         {id: 1, code: 1, name: "Новости"},
-        {id: 2, code: 2, name: "Интервью"},
+        {id: 2, code: 2, name: "SALE"},
+        {id: 3, code: 3, name: "Интервью"},
+        {id: 4, code: 4, name: "Акция"},
+        {id: 5, code: 5, name: "Beauty"},
     ];
 
     const categorySelect = document.getElementById("categorySelect");
