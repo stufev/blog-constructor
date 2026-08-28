@@ -10,6 +10,21 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      (function () {
+        var PASSWORD = 'vipavenue2026';
+        var SESSION_KEY = 'bc_auth';
+
+        if (sessionStorage.getItem(SESSION_KEY) !== '1') {
+          var pwd = prompt('Введите пароль для доступа:');
+          if (pwd !== PASSWORD) {
+            document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#666">Доступ запрещён</div>';
+            throw new Error('Access denied');
+          }
+          sessionStorage.setItem(SESSION_KEY, '1');
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
