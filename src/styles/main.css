@@ -1,0 +1,113 @@
+/* ========== Reset & Base ========== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #app {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+/* ========== CSS Variables — Light theme ========== */
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f7f8fa;
+  --bg-hover: #f0f1f4;
+  --preview-bg: #fafafa;
+  --header-bg: #1a1a1a;
+
+  --border: #e4e6ea;
+  --text: #1a1a1a;
+  --text-secondary: #444;
+  --text-muted: #888;
+
+  --accent: #c9a85c;
+  --accent-rgb: 201, 168, 92;
+  --accent-light: rgba(201, 168, 92, 0.08);
+
+  --danger: #dc3545;
+  --danger-rgb: 220, 53, 69;
+
+  --tooltip-bg: #1a1a1a;
+  --tooltip-text: #ffffff;
+
+  /* header overrides */
+  --header-text: #ffffff;
+}
+
+/* header специфика */
+.app-header {
+  color: var(--header-text) !important;
+}
+
+.app-header .app-logo,
+.app-header .block-count,
+.app-header .header-btn {
+  color: #ccc !important;
+}
+
+.app-header .app-logo .app-logo__v {
+  color: var(--accent) !important;
+}
+
+.app-header .block-count {
+  background: rgba(255,255,255,0.1) !important;
+}
+
+.app-header .header-btn {
+  border-color: rgba(255,255,255,0.2) !important;
+  background: rgba(255,255,255,0.05) !important;
+}
+
+.app-header .header-btn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background: rgba(201, 168, 92, 0.1) !important;
+}
+
+.app-header .header-btn--undo {
+  border-color: rgba(230, 126, 34, 0.6) !important;
+  color: #f0a050 !important;
+}
+
+/* ========== Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ========== Selection ========== */
+::selection {
+  background: rgba(201, 168, 92, 0.25);
+}

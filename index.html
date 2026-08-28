@@ -1,74 +1,15 @@
 <!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Article JSON Generator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<h1>Генератор JSON статьи</h1>
-
-<form id="form" onsubmit="return false;">
-    <fieldset>
-        <legend>Категория</legend>
-        <label>
-            Выберите категорию:
-            <select id="categorySelect" required>
-                <option value="">-- выберите --</option>
-                <option value="0">Коллекции</option>
-                <option value="1">Новости</option>
-                <option value="2">Интервью</option>
-            </select>
-        </label>
-    </fieldset>
-
-    <fieldset>
-        <legend>Статья</legend>
-        <label>Название (name):
-            <input id="name" type="text" placeholder="Введите название" required>
-        </label>
-        <label>Дата (dd.mm.yyyy):
-            <input id="dateText" type="text" placeholder="Введите дату" required>
-            <div class="muted" style="margin-top:6px">Или выберите дату: <input id="datePicker" type="date"
-                                                                                style="width:auto;margin-left:8px">
-            </div>
-        </label>
-        <label>Автор (author):
-            <input id="author" type="text" placeholder="Введите автора (необязательно)">
-        </label>
-        <label>Тег (tag):
-            <input id="tag" type="text" placeholder="Введите тег" required>
-        </label>
-    </fieldset>
-
-    <fieldset>
-        <legend>Картинки (attachments)</legend>
-        <label>bigImg: <input id="bigImg" type="url" placeholder="https://..." required></label>
-        <label>mediumImg: <input id="mediumImg" type="url" placeholder="https://..." required></label>
-        <label>smallImg: <input id="smallImg" type="url" placeholder="https://..." required></label>
-        <label>latestImg: <input id="latestImg" type="url" placeholder="https://..." required></label>
-        <label>mainImg: <input id="mainImg" type="url" placeholder="https://..." required></label>
-        <label>headerImg: <input id="headerImg" type="url" placeholder="https://..." required></label>
-    </fieldset>
-
-    <fieldset id="contentBlocksFieldset">
-        <legend>Контент</legend>
-        <div id="blocksContainer"></div>
-        <button type="button" id="addBlock" class="small" style="margin-top:10px">Добавить блок</button>
-    </fieldset>
-
-    <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px">
-        <button id="generate" type="button" class="small">Сгенерировать JSON</button>
-        <button id="copy" type="button" class="small">Копировать в буфер</button>
-        <div id="copyMsg" class="copyMsg">Скопировано!</div>
-    </div>
-
-    <fieldset>
-        <legend>Результат (только JSON)</legend>
-        <textarea id="output" readonly placeholder="Здесь появится JSON..."></textarea>
-    </fieldset>
-</form>
-<script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Constructor v2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
