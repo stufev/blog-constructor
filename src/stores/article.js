@@ -177,7 +177,6 @@ export const useArticleStore = defineStore('article', () => {
   function exportToJson() {
     const cat = category.value
     const result = {
-      code: meta.value.code || undefined,
       category: { id: cat.id, code: cat.code, name: cat.name },
       name: meta.value.name,
       tag: meta.value.tag || undefined,
@@ -207,7 +206,6 @@ export const useArticleStore = defineStore('article', () => {
     const data = JSON.parse(jsonString)
 
     // мета
-    meta.value.code = data.code ?? ''
     meta.value.name = data.name ?? ''
     meta.value.author = data.author ?? ''
     meta.value.tag = data.tag ?? ''
