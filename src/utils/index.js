@@ -41,15 +41,16 @@ export function toSlug(str) {
 }
 
 /**
- * Переводит текст через MyMemory API (бесплатно, без ключа)
+ * Переводит текст через неофициальный Google Translate endpoint (без ключа)
  * и возвращает slug из переведённой строки
  */
 export async function translateToSlug(text) {
-  const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=ru|en`
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ru&tl=en&dt=t&q=${encodeURIComponent(text)}`
   const res = await fetch(url)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()
-  const translated = data?.responseData?.translatedText
+  // Ответ: [ [ ["translated", "original", ...], ... ], ... ]
+  const translated = data?.[0]?.map((chunk) => chunk?.[0]).filter(Boolean).join('')
   if (!translated) throw new Error('Нет перевода в ответе')
   return toSlug(translated)
 }
