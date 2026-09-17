@@ -2,3 +2,10 @@ node_modules/
 dist/
 .DS_Store
 *.local
+
+# IDE
+.idea/
+.vscode/
+
+# используем npm (package-lock.json), yarn.lock не нужен
+yarn.lock
