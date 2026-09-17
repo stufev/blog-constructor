@@ -28,12 +28,12 @@ export const GENDER_OPTIONS = [
 ]
 
 export const ATTACHMENTS_META = {
-  bigImg:     { label: 'bigImg',     hint: 'Большой баннер на главной блога (десктоп)' },
-  mediumImg:  { label: 'mediumImg',  hint: 'Средний баннер в сетке статей' },
-  smallImg:   { label: 'smallImg',   hint: 'Маленькая карточка в списке' },
-  latestImg:  { label: 'latestImg',  hint: 'Блок "Последние статьи"' },
-  mainImg:    { label: 'mainImg',    hint: 'Главное изображение статьи (OG-image)' },
-  headerImg:  { label: 'headerImg',  hint: 'Баннер внутри статьи, над контентом' },
+  bigImg:     { label: 'bigImg — 648×690',    hint: 'Большой баннер на главной блога (десктоп)' },
+  mediumImg:  { label: 'mediumImg — 324×485', hint: 'Средний баннер в сетке статей' },
+  smallImg:   { label: 'smallImg — 324×328',  hint: 'Маленькая карточка в списке' },
+  latestImg:  { label: 'latestImg — 80×80',   hint: 'Блок "Последние статьи"' },
+  mainImg:    { label: 'mainImg — 1361×608',  hint: 'Главное изображение статьи (OG-image)' },
+  headerImg:  { label: 'headerImg — 680×680', hint: 'Баннер внутри статьи, над контентом' },
 }
 
 export const HTML_SNIPPETS = [

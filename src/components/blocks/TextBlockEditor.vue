@@ -14,6 +14,19 @@
           {{ snip.label }}
         </button>
       </div>
+      <div class="toolbar-group">
+        <span class="toolbar-group__label">Текст</span>
+        <button
+          type="button"
+          class="toolbar-btn toolbar-btn--typo"
+          :class="{ 'toolbar-btn--loading': typoLoading }"
+          :disabled="typoLoading || !block.content"
+          title="Расставить типографику: «ёлочки», тире, неразрывные пробелы"
+          @click="applyTypograf"
+        >
+          {{ typoLoading ? '…' : '✨ Типографика' }}
+        </button>
+      </div>
     </div>
     <textarea
       ref="textareaRef"
@@ -31,6 +44,7 @@
 import { ref } from 'vue'
 import { useArticleStore } from '@/stores/article.js'
 import { HTML_SNIPPETS } from '@/constants/index.js'
+import { typografText } from '@/utils/index.js'
 
 const props = defineProps({
   block: {
@@ -41,6 +55,18 @@ const props = defineProps({
 
 const store = useArticleStore()
 const textareaRef = ref(null)
+const typoLoading = ref(false)
+
+async function applyTypograf() {
+  if (!props.block.content || typoLoading.value) return
+  typoLoading.value = true
+  try {
+    props.block.content = await typografText(props.block.content)
+    store.markDirty()
+  } finally {
+    typoLoading.value = false
+  }
+}
 
 function insertSnippet(snippet) {
   const el = textareaRef.value
@@ -129,6 +155,22 @@ function insertSnippet(snippet) {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
+}
+
+.toolbar-btn--typo {
+  font-family: inherit;
+  font-weight: 500;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.toolbar-btn--typo:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.toolbar-btn--loading {
+  pointer-events: none;
 }
 
 .code-textarea {

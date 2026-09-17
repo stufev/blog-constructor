@@ -61,3 +61,22 @@ export async function translateToSlug(text) {
 export function deepClone(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
+
+// Ленивый синглтон Типографа — грузим пакет только при первом вызове
+let _typografInstance = null
+
+/**
+ * Прогоняет текст (в т.ч. HTML) через типограф Муравьёва:
+ * кавычки-«ёлочки», неразрывные пробелы, тире, многоточия и пр.
+ * HTML-теги сохраняются как есть.
+ * @param {string} text
+ * @returns {Promise<string>}
+ */
+export async function typografText(text) {
+  if (!text) return text
+  if (!_typografInstance) {
+    const { default: Typograf } = await import('typograf')
+    _typografInstance = new Typograf({ locale: ['ru', 'en-US'] })
+  }
+  return _typografInstance.execute(text)
+}
