@@ -5,6 +5,18 @@
     <section class="section">
       <h3 class="section__title">Статья</h3>
 
+      <div class="form-field form-field--checkbox">
+        <label class="checkbox-label">
+          <input
+            v-model="meta.active"
+            type="checkbox"
+            class="checkbox-input"
+            @change="markDirty()"
+          />
+          <span class="checkbox-text">Активна</span>
+        </label>
+      </div>
+
       <div class="form-field" :class="{ 'form-field--error': errors.name }">
         <label class="form-label">Название <span class="req">*</span></label>
         <input
@@ -379,6 +391,32 @@ function clearError(key) {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Checkbox */
+.form-field--checkbox {
+  margin-bottom: 12px;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checkbox-text {
+  font-size: 13px;
+  color: var(--text);
 }
 
 /* Tooltip */

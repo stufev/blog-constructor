@@ -94,6 +94,7 @@ const DRAFT_KEY = 'blog-constructor-v2-draft'
 export const useArticleStore = defineStore('article', () => {
   // Мета статьи
   const meta = ref({
+    active: true,
     code: '',
     categoryIndex: 0,
     name: '',
@@ -177,6 +178,7 @@ export const useArticleStore = defineStore('article', () => {
   function exportToJson() {
     const cat = category.value
     const result = {
+      active: meta.value.active,
       category: { id: cat.id, code: cat.code, name: cat.name },
       name: meta.value.name,
       tag: meta.value.tag || undefined,
@@ -206,6 +208,7 @@ export const useArticleStore = defineStore('article', () => {
     const data = JSON.parse(jsonString)
 
     // мета
+    meta.value.active = data.active !== undefined ? Boolean(data.active) : true
     meta.value.name = data.name ?? ''
     meta.value.author = data.author ?? ''
     meta.value.tag = data.tag ?? ''
@@ -275,6 +278,7 @@ export const useArticleStore = defineStore('article', () => {
       // Патчим поля мета по одному — не заменяем объект целиком,
       // иначе компоненты теряют реактивную ссылку
       const m = draft.meta || {}
+      meta.value.active = m.active !== undefined ? Boolean(m.active) : true
       meta.value.code = m.code ?? ''
       meta.value.categoryIndex = m.categoryIndex ?? 0
       meta.value.name = m.name ?? ''
@@ -308,6 +312,7 @@ export const useArticleStore = defineStore('article', () => {
   }
 
   function resetAll() {
+    meta.value.active = true
     meta.value.code = ''
     meta.value.categoryIndex = 0
     meta.value.name = ''

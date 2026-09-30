@@ -3,8 +3,6 @@ export const CATEGORIES = [
   { id: 1, code: 1, name: 'Новости' },
   { id: 2, code: 2, name: 'SALE' },
   { id: 3, code: 3, name: 'Интервью' },
-  { id: 4, code: 4, name: 'Акция' },
-  { id: 5, code: 5, name: 'Beauty' },
 ]
 
 export const BLOCK_TYPES = [
