@@ -277,11 +277,6 @@ function onKeyDown(e) {
     e.preventDefault()
     doCopy()
   }
-  if ((e.ctrlKey || e.metaKey) && e.key === 'z' && deletedHistory.value.length) {
-    e.preventDefault()
-    undoDelete()
-    toastRef.value?.show('Блок восстановлен')
-  }
 }
 
 // Utils

@@ -75,4 +75,13 @@ export const HTML_SNIPPETS = [
       { label: '<video>',       snippet: '<div class="article__video">\n  <iframe src="" frameborder="0" allowfullscreen></iframe>\n</div>\n<div class="article__video-mobile">\n  <iframe src="" frameborder="0" allowfullscreen></iframe>\n</div>' },
     ]
   },
+  // FAQ (schema.org/FAQPage)
+  { group: 'FAQ',
+    items: [
+      { label: 'FAQ блок',
+        snippet: '<div itemscope itemtype="https://schema.org/FAQPage">\n  <h2 class="regularH3">Часто задаваемые вопросы</h2>\n\n  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">\n    <h3 class="regularH3" itemprop="name">Вопрос?</h3>\n    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">\n      <p itemprop="text">Ответ.</p>\n    </div>\n  </div>\n</div>' },
+      { label: '+ вопрос',
+        snippet: '<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">\n  <h3 class="regularH3" itemprop="name">Вопрос?</h3>\n  <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">\n    <p itemprop="text">Ответ.</p>\n  </div>\n</div>' },
+    ]
+  },
 ]
