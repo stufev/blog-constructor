@@ -109,6 +109,13 @@ export const useArticleStore = defineStore('article', () => {
       mainImg: '',
       headerImg: '',
     },
+    // Кастомное SEO. enabled — состояние чекбокса «Указать SEO вручную».
+    // Пустые/пробельные title и description = «не задано» (используется автогенерация).
+    seo: {
+      enabled: false,
+      title: '',
+      description: '',
+    },
   })
 
   // Блоки контента
@@ -195,6 +202,18 @@ export const useArticleStore = defineStore('article', () => {
 
     result.content = blocks.value.map(serializeBlock)
 
+    // SEO: добавляем вложенный объект seo только если чекбокс включён
+    // и хотя бы одно из полей непустое после trim.
+    if (meta.value.seo?.enabled) {
+      const seo = {}
+      const title = (meta.value.seo.title ?? '').trim()
+      const description = (meta.value.seo.description ?? '').trim()
+      if (title) seo.title = title
+      if (description) seo.description = description
+      // Пустой объект не добавляем — отсутствие ключа предпочтительнее.
+      if (Object.keys(seo).length) result.seo = seo
+    }
+
     // убираем верхнеуровневые undefined
     Object.keys(result).forEach((k) => {
       if (result[k] === undefined) delete result[k]
@@ -220,6 +239,16 @@ export const useArticleStore = defineStore('article', () => {
       latestImg: data.attachments?.latestImg ?? '',
       mainImg: data.attachments?.mainImg ?? '',
       headerImg: data.attachments?.headerImg ?? '',
+    }
+
+    // SEO: восстанавливаем состояние чекбокса и значения полей.
+    // Чекбокс включён, если в seo есть непустой title или description.
+    const seoTitle = (data.seo?.title ?? '').trim()
+    const seoDescription = (data.seo?.description ?? '').trim()
+    meta.value.seo = {
+      enabled: Boolean(seoTitle || seoDescription),
+      title: data.seo?.title ?? '',
+      description: data.seo?.description ?? '',
     }
 
     // категория
@@ -292,6 +321,10 @@ export const useArticleStore = defineStore('article', () => {
       meta.value.attachments.mainImg = m.attachments?.mainImg ?? ''
       meta.value.attachments.headerImg = m.attachments?.headerImg ?? ''
 
+      meta.value.seo.enabled = Boolean(m.seo?.enabled)
+      meta.value.seo.title = m.seo?.title ?? ''
+      meta.value.seo.description = m.seo?.description ?? ''
+
       blocks.value = draft.blocks || []
       draftSavedAt.value = draft.savedAt
       return draft.savedAt
@@ -325,6 +358,9 @@ export const useArticleStore = defineStore('article', () => {
     meta.value.attachments.latestImg = ''
     meta.value.attachments.mainImg = ''
     meta.value.attachments.headerImg = ''
+    meta.value.seo.enabled = false
+    meta.value.seo.title = ''
+    meta.value.seo.description = ''
     blocks.value = []
     deletedHistory.value = []
     isDirty.value = false

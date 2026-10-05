@@ -147,6 +147,56 @@
       </div>
     </section>
 
+    <!-- 3. SEO — опциональное переопределение title/description вручную -->
+    <section class="section">
+      <h3 class="section__title">
+        SEO
+        <span class="section__hint">по умолчанию генерируется автоматически</span>
+      </h3>
+
+      <div class="form-field form-field--checkbox">
+        <label class="checkbox-label">
+          <input
+            v-model="meta.seo.enabled"
+            type="checkbox"
+            class="checkbox-input"
+            @change="markDirty()"
+          />
+          <span class="checkbox-text">Указать SEO вручную</span>
+        </label>
+      </div>
+
+      <template v-if="meta.seo.enabled">
+        <div class="form-field">
+          <label class="form-label">
+            SEO Title
+            <span class="muted">(необязательно)</span>
+          </label>
+          <input
+            v-model="meta.seo.title"
+            type="text"
+            class="form-input"
+            placeholder="Пусто — используется название статьи"
+            @input="markDirty()"
+          />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">
+            SEO Description
+            <span class="muted">(необязательно)</span>
+          </label>
+          <textarea
+            v-model="meta.seo.description"
+            class="form-input form-textarea"
+            rows="3"
+            placeholder="Пусто — используются первые 2 предложения первого текстового блока"
+            @input="markDirty()"
+          />
+        </div>
+      </template>
+    </section>
+
   </div>
 </template>
 
@@ -284,6 +334,12 @@ function clearError(key) {
 .form-select:focus {
   outline: none;
   border-color: var(--accent);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 60px;
+  line-height: 1.4;
 }
 
 .form-field--error .form-input,
